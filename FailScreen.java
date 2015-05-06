@@ -12,7 +12,7 @@ public class FailScreen extends JPanel {
 	private JPanel pnlNorthSouth = new JPanel();
 	private JPanel pnlSouth = new JPanel();
 	private JLabel labelNorthNorth = new JLabel("FEL! FEL! FEL! Rätt svar är: ");
-	private JLabel labelNorthSouth = new JLabel("ALTERNATIV 4");
+	private JLabel labelNorthSouth = new JLabel("");
 	private Font labelFont = new Font("Arial", Font.BOLD, 24);
 	private JLabel labelSouth = new JLabel("", JLabel.CENTER);
 	private JPanel pnlBackground = new JPanel();

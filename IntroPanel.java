@@ -67,7 +67,7 @@ public class IntroPanel extends JPanel {
 	private class NewGameListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			ui.swap("QuizScreen");
+			ui.swap("CategoryScreen");
 		}
 	}
 	
