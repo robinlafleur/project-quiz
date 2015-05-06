@@ -4,21 +4,21 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class EndScreen extends JPanel {
+public class FailScreen extends JPanel {
 	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/Bakgrund1.png");
 	private ImageIcon icon1 = new ImageIcon("M:/systemutveckling projekt/bilder/glad.gif");
 	private JPanel pnlNorth = new JPanel(new GridLayout(2, 1));
 	private JPanel pnlNorthNorth = new JPanel();
 	private JPanel pnlNorthSouth = new JPanel();
 	private JPanel pnlSouth = new JPanel();
-	private JLabel labelNorthNorth = new JLabel("Bra jobbat!");
-	private JLabel labelNorthSouth = new JLabel("Poäng: 18");
+	private JLabel labelNorthNorth = new JLabel("FEL! FEL! FEL! Rätt svar är: ");
+	private JLabel labelNorthSouth = new JLabel("ALTERNATIV 4");
 	private Font labelFont = new Font("Arial", Font.BOLD, 24);
 	private JLabel labelSouth = new JLabel("", icon1, JLabel.CENTER);
 	private JPanel pnlBackground = new JPanel();
 	private JLabel lblBackground = new JLabel(background);
 	
-	public EndScreen() {
+	public FailScreen() {
 		setPreferredSize(new Dimension(1000, 1000));
 		pnlBackground.setPreferredSize(new Dimension(1000, 1000));
 //		lblBackground.setPreferredSize(new Dimension(1000, 1000));
@@ -48,14 +48,14 @@ public class EndScreen extends JPanel {
 
 	public void start() {
 		JFrame frame = new JFrame( "" ); frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add( new EndScreen() );
+		frame.add( new FailScreen() );
 		frame.pack();
 		frame.setVisible(true); 
 		
 	}
 	
 		public static void main(String[] args) {
-		EndScreen app = new EndScreen();
+		FailScreen app = new FailScreen();
 		app.start(); }
 	}
 

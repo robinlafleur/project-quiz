@@ -1,12 +1,12 @@
-package quizUI;
+package project;
 
 import java.awt.*;
 
 import javax.swing.*;
 
 public class IntroPanel extends JPanel {
-	private ImageIcon background = new ImageIcon("C:/filer/Bakgrund1.PNG");
-	private JLabel lblTitle = new JLabel("Välkommen till CodeQuiz");
+	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/Bakgrund1.png");
+	private JLabel lblTitle = new JLabel("VÃ¤lkommen till CodeQuiz");
 	private JPanel pnlBackground = new JPanel();
 	private JLabel lblBackground = new JLabel(background);
 	private JPanel pnlNorth = new JPanel();
@@ -38,7 +38,7 @@ public class IntroPanel extends JPanel {
 		}
 		
 		buttons[0].setText("Nytt spel");
-		buttons[1].setText("Skapa fråga");
+		buttons[1].setText("Skapa frÃ¥ga");
 		buttons[2].setText("Avsluta");
 		
 		pnlNorth.setPreferredSize(new Dimension(768, panelSizeUnit));
