@@ -9,7 +9,7 @@ public class StartQuiz {
 	
 	public void run(){
 		JFrame frame = new JFrame();
-		frame.setSize(768,768);
+		frame.setPreferredSize(new Dimension(768,768));
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setTitle("CodeQuiz");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

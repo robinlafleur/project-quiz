@@ -1,12 +1,14 @@
 package main;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 public class FailScreen extends JPanel {
 	private UI ui;
-	private ImageIcon background = new ImageIcon("C:/Quizbilder/Bakgrund1.png");
+	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Händelse_1_Bad.jpg");
 	private JPanel pnlNorth = new JPanel(new GridLayout(2, 1));
 	private JPanel pnlNorthNorth = new JPanel();
 	private JPanel pnlNorthSouth = new JPanel();
@@ -17,6 +19,7 @@ public class FailScreen extends JPanel {
 	private JLabel labelSouth = new JLabel("", JLabel.CENTER);
 	private JPanel pnlBackground = new JPanel();
 	private JLabel lblBackground = new JLabel(background);
+	private JButton btnContinue = new JButton("Nästa fråga");
 	
 	public FailScreen(UI ui) {
 		this.ui = ui;
@@ -41,13 +44,27 @@ public class FailScreen extends JPanel {
 		pnlNorth.add(pnlNorthNorth);
 		pnlNorthNorth.add(labelNorthNorth);
 		pnlNorth.add(pnlNorthSouth);
-		pnlNorthSouth.add(labelNorthSouth);
+		pnlNorthNorth.add(labelNorthSouth);
 		pnlBackground.add(pnlSouth);
-		pnlSouth.add(labelSouth);
+		pnlNorthSouth.add(btnContinue);
+//		pnlSouth.add(labelSouth);
+		
+		btnContinue.addActionListener(new NewQuestion());
 	}
 	
 	public void setRightAnswer(String rightAnswer){
 		labelNorthSouth.setText(rightAnswer);
+	}
+	
+	private class NewQuestion implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if(btnContinue.isEnabled()) {
+				ui.swap("QuizScreen");
+				QuestionList list = new QuestionList();
+				list.removeQuestion();
+				
+			}
+		}
 	}
 	
 }

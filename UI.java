@@ -8,7 +8,9 @@ import java.util.Random;
 import javax.swing.*;
 
 public class UI extends JPanel{
-	Question q = new Question();
+
+//	private QuestionList list = new QuestionList();
+	private Question q;
 	
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel pnlMain = new JPanel(cardLayout);
@@ -41,10 +43,25 @@ public class UI extends JPanel{
 		failScreenPnl.setRightAnswer(q.getRightAnswer());
 	}
 	
-	public String[] shuffleAnswers(){
-		Random ran = new Random();
+	public void answers() {
+		QuestionList list = new QuestionList();
+		Random rand = new Random();
+		list.questionList(); 
+		list.randomInt(0);
+		q = list.getQuestion();	
+	}
 	
-		String[] answers = q.getQuestion();
+	public String[] shuffleAnswers(){
+
+		Random ran = new Random();
+		String[] answers = new String[5];
+		answers[0] = q.getQuestion();
+		answers[1] = q.getRightAnswer();
+		answers[2] = q.getWrongAnswer1();
+		answers[3] = q.getWrongAnswer2();
+		answers[4] = q.getWrongAnswer3();
+				
+		
 		String[] shuffledAnswers = new String[4];
 		
 		int randomInt = ran.nextInt(4)+1;
@@ -85,10 +102,12 @@ public class UI extends JPanel{
 	}
 	
 	public String getQuestion(){
-		String[] question = q.getQuestion();
-		return question[0];
+		answers();
+		String question = q.getQuestion();
+		return question;
 	}
 	
 	
 	
 }
+

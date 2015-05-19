@@ -1,12 +1,14 @@
 package main;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 public class WinScreen extends JPanel {
 	private UI ui;
-	private ImageIcon background = new ImageIcon("C:/Quizbilder/Bakgrund1.png");
+	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Händelse_1_Victory.jpg");
 	private JPanel pnlNorth = new JPanel(new GridLayout(2, 1));
 	private JPanel pnlNorthNorth = new JPanel();
 	private JPanel pnlNorthSouth = new JPanel();
@@ -17,6 +19,7 @@ public class WinScreen extends JPanel {
 	private JLabel labelSouth = new JLabel("", JLabel.CENTER);
 	private JPanel pnlBackground = new JPanel();
 	private JLabel lblBackground = new JLabel(background);
+	private JButton btnContinue = new JButton("Nästa fråga");
 	
 	public WinScreen(UI ui) {
 		this.ui = ui;
@@ -44,6 +47,19 @@ public class WinScreen extends JPanel {
 		pnlNorthSouth.add(labelNorthSouth);
 		pnlBackground.add(pnlSouth);
 		pnlSouth.add(labelSouth);
+		
+		pnlNorthSouth.add(btnContinue);
+		
+		btnContinue.addActionListener(new NewQuestion());
+	}
+	
+	private class NewQuestion implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if(btnContinue.isEnabled()) {
+				ui.swap("QuizScreen");
+				
+			}
+		}
 	}
 }
 

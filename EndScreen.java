@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class EndScreen extends JPanel {
-	private ImageIcon background = new ImageIcon("C:/Quizbilder/Bakgrund1.png");
+	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Händelse_1_Victory.jpg");
 	private JPanel pnlNorth = new JPanel(new GridLayout(2, 1));
 	private JPanel pnlNorthNorth = new JPanel();
 	private JPanel pnlNorthSouth = new JPanel();

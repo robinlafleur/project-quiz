@@ -8,14 +8,15 @@ import javax.swing.*;
 
 public class QuizScreen extends JPanel {
 	private UI ui;
-	private ImageIcon background = new ImageIcon("C:/Quizbilder/Bakgrund1.png");
-	private JLabel lblQuestion = new JLabel("Fråga: Hur många bultar finns det i Ölandsbron?");
+	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Händelse_1_Start.jpg");
+	private JLabel lblQuestion = new JLabel();
 	private JPanel pnlBackground = new JPanel();
 	private JLabel lblBackground = new JLabel(background);
 	private JPanel pnlNorth = new JPanel();
 	private JPanel pnlCenter = new JPanel();
 	private JPanel pnlSouth = new JPanel();
-	private Dimension btnSize = new Dimension(768, 20);
+	private JButton buttonBack = new JButton("TILLBAKA");
+	private Question q;
 	
 	private JButton[] buttons = new JButton[4];
 	private int rightAnswer;
@@ -35,19 +36,20 @@ public class QuizScreen extends JPanel {
 		pnlSouth.setOpaque(false);
 		
 		pnlNorth.setPreferredSize(new Dimension(768, 200));
-		pnlCenter.setPreferredSize(new Dimension(768, 600));
-		pnlSouth.setPreferredSize(new Dimension(600, 50));
+		pnlCenter.setPreferredSize(new Dimension(768, 200));
+		pnlSouth.setPreferredSize(new Dimension(768, 200));
+		
 		
 		lblBackground.add(pnlNorth);
 		lblBackground.add(pnlCenter);
 		lblBackground.add(pnlSouth);
 		
 		pnlNorth.add(lblQuestion);
-		
 		shuffleAnswers();
+		pnlSouth.add(buttonBack);
 		addListeners();
 	}
-	
+
 	public void shuffleAnswers(){
 		setQuestion();
 		String[] answers = ui.shuffleAnswers();
@@ -62,6 +64,7 @@ public class QuizScreen extends JPanel {
 	}
 	
 	public void setQuestion(){
+		lblQuestion.setFont(new Font("Arial", Font.PLAIN, 30));
 		lblQuestion.setText(ui.getQuestion());
 	}
 	
@@ -74,6 +77,7 @@ public class QuizScreen extends JPanel {
 				buttons[i].addActionListener(new WrongAnswerListener());
 			}
 		}
+		buttonBack.addActionListener(new BackButtonListener());
 	}
 	
 	private class RightAnswerListener implements ActionListener{
@@ -93,13 +97,17 @@ public class QuizScreen extends JPanel {
 		}
 		
 	}
+	
+	private class BackButtonListener implements ActionListener {
 		
+		public void actionPerformed(ActionEvent e) {
+			if(buttonBack.isEnabled()) {
+				int res = JOptionPane.showConfirmDialog(null, "Vill du gå tillbaka och välja kategori?", "", JOptionPane.YES_NO_OPTION);
+				if(res == JOptionPane.YES_OPTION) {
+					ui.swap("CategoryScreen");
+				}
+			}
+		}
+	}
+}	
 	
-	
-
-
-	
-	
-	
-}
-
