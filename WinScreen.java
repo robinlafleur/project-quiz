@@ -6,9 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+/*
+ * Klassen som ritar upp fönstret när du svarat rätt på en fråga
+ */
 public class WinScreen extends JPanel {
 	private UI ui;
-	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Händelse_1_Victory.jpg");
+	private ImageIcon background = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/main/Images/Handelse_1_Victory.png")));
 	private JPanel pnlNorth = new JPanel(new GridLayout(2, 1));
 	private JPanel pnlNorthNorth = new JPanel();
 	private JPanel pnlNorthSouth = new JPanel();
@@ -21,11 +24,16 @@ public class WinScreen extends JPanel {
 	private JLabel lblBackground = new JLabel(background);
 	private JButton btnContinue = new JButton("Nästa fråga");
 	
+	private Font font = new Font ("Garamond", Font.BOLD , 20);
+	
+	/*
+	 * Konstruktorn ritar upp fönstret.
+	 */
+	
 	public WinScreen(UI ui) {
 		this.ui = ui;
 		setPreferredSize(new Dimension(768, 768));
 		pnlBackground.setPreferredSize(new Dimension(768, 768));
-//		lblBackground.setPreferredSize(new Dimension(1000, 1000));
 		pnlNorth.setPreferredSize(new Dimension(768, 400));
 		pnlNorth.setOpaque(false);
 		pnlNorthNorth.setSize(new Dimension(380, 140));
@@ -51,13 +59,38 @@ public class WinScreen extends JPanel {
 		pnlNorthSouth.add(btnContinue);
 		
 		btnContinue.addActionListener(new NewQuestion());
+		
+		labelNorthNorth.setFont(font);
 	}
+	
+	/*
+	 * Sätter texten till knappen som gör att du kan klicka dig vidare
+	 */
+	
+	public void setContinue(String txt){
+		btnContinue.setText(txt);
+	}
+	
+	/*
+	 * Sätter bakgrund beroende på tema
+	 */
+	
+	public void setThemeBackground(String path){
+		background = new ImageIcon(
+			Toolkit.getDefaultToolkit().getImage(getClass().getResource("/main/Images/"+path)));
+	lblBackground.setIcon(background);
+	}
+	
+	/*
+	 * Lyssnaren till knappen för att komma till nästa fråga
+	 */
 	
 	private class NewQuestion implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(btnContinue.isEnabled()) {
+				ui.playClickSound();
 				ui.swap("QuizScreen");
-				
+				ui.newQuestion();
 			}
 		}
 	}

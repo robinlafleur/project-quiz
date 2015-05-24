@@ -7,9 +7,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+/**
+ * Huvudmenyn.
+ */
 public class IntroPanel extends JPanel {
 	private UI ui;
-	private ImageIcon background = new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/New_Game_Screen.png");
+	private ImageIcon background = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/main/Images/New_Game_Screen.png")));
 	private JPanel pnlBackground = new JPanel();
 	private JLabel lblBackground = new JLabel(background);
 	private JPanel pnlNorth = new JPanel();
@@ -44,9 +47,9 @@ public class IntroPanel extends JPanel {
 			pnlSouth.add(buttons[i]);
 		}
 		
-		buttons[0].setIcon(new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/New_Game.png"));
-		buttons[1].setIcon(new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Create_Question.png"));
-		buttons[2].setIcon(new ImageIcon("C:/Skolan/Systemutveckling/Projekt/bild/CodeQuiz/Quit.png"));
+		buttons[0].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/main/Images/New_Game.png"))));
+		buttons[1].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/main/Images/Create_Question.png"))));
+		buttons[2].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/main/Images/Quit.png"))));
 		
 		buttons[0].setPreferredSize(btnSize);
 		buttons[1].setPreferredSize(btnSize2);			
@@ -61,35 +64,48 @@ public class IntroPanel extends JPanel {
 		lblBackground.add(pnlNorth);
 		lblBackground.add(pnlCenter);
 		lblBackground.add(pnlSouth);
-		
-	
 	}
 	
+	/**
+	 * Lägger till lyssnare för knapparna.
+	 */
 	public void addListeners(){
 		buttons[0].addActionListener(new NewGameListener());
 		buttons[1].addActionListener(new CreateQuestionListener());
 		buttons[2].addActionListener(new ExitListener());
 	}
 	
+	/**
+	 * Lyssnare för 'Nytt spel'-knappen.
+	 */
 	private class NewGameListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			ui.playClickSound();
+			ui.newGame();
 			ui.swap("CategoryScreen");
+			ui.playSong();
 		}
 	}
 	
+	/**
+	 * Lyssnare för 'Skapa fråga'-knappen.
+	 */
 	private class CreateQuestionListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, "Error 1337 \nContact blizzard support team");
+			ui.playClickSound();
+			ui.swap("CreationScreen");
 		}
 	}
 	
+	/**
+	 * Lyssnare för 'Avsluta'-knappen.
+	 */
 	private class ExitListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
 		}
 	}
-	
 }

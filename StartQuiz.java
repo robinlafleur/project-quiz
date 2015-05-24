@@ -4,7 +4,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
+/**
+ * Startar programmet Code Quiz.
+ */
 public class StartQuiz {
 	
 	public void run(){
@@ -21,6 +25,11 @@ public class StartQuiz {
 	}
 	
 	public static void main(String[] args){
+		try{
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		new StartQuiz().run();
 	}
 }
